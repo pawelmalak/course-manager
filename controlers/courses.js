@@ -56,7 +56,10 @@ exports.updateCourse = asyncWrapper(async (req, res, next) => {
     return next(new ErrorResponse(404, `Course with id of ${req.params.id} was not found`));
   }
 
-  course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+  course = await Course.findByIdAndUpdate(req.params.id, {
+    ...req.body,
+    updatedAt: Date.now()
+  }, {
     runValidators: true,
     new: true
   });
