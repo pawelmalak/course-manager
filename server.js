@@ -23,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 // Import and register express routes
 app.use('/api/v1/courses', require('./routes/courses'));
 app.use('/api/v1/users', require('./routes/users'));
+app.use('/api/v1/authors', require('./routes/authors'));
 
 // Set custom error handling middleware
 app.use(errorHandler);
