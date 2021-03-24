@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function(next) {
-  if (this.password === undefined || this.isModified('password')) {
+  if (this.isModified('password')) {
     this.password = await hashPassword(this.password);
   }
   next();

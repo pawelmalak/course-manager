@@ -82,3 +82,32 @@ exports.deleteUser = asyncWrapper(async (req, res, next) => {
     data: {}
   });
 })
+
+// @desc      Toggle favorite course
+// @method    PUT
+// @route     /api/v1/courses/:courseId/favorite
+// @access    Private
+exports.favoriteCourse = asyncWrapper(async (req, res, next) => {
+  // tmp
+  req.user = { id: '6058c5bf3bc4d55a88b68320' };
+
+  const course = await Course.findById(req.params.courseId);
+
+  if (!course) {
+    return next(new ErrorResponse(404, `Course with id of ${req.params.courseId} was not found`));
+  }
+
+  const user = await User.findById(req.user.id);
+  // Check if user already favorited this course
+  if (user.favorites.find(el => el == req.params.courseId)) {
+    user.favorites = user.favorites.filter(el => el != req.params.courseId)
+  } else {
+    user.favorites = [ ...user.favorites, req.params.courseId ];
+  }
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    data: user.favorites
+  })
+})
