@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { protected } = require('../middleware/auth');
 
 const {
   getAuthor,
@@ -12,12 +13,12 @@ const {
 router
   .route('/')
   .get(getAuthors)
-  .post(createAuthor);
+  .post(protected, createAuthor);
 
 router
   .route('/:id')
   .get(getAuthor)
-  .put(updateAuthor)
-  .delete(deleteAuthor);
+  .put(protected, updateAuthor)
+  .delete(protected, deleteAuthor);
 
 module.exports = router;

@@ -4,7 +4,9 @@
   "description": "Fullstack MERN app to manage and watch video courses",
   "main": "server.js",
   "scripts": {
-    "server-dev": "nodemon server.js -e js"
+    "server-dev": "nodemon server.js -e js",
+    "client-dev": "npm start --prefix client",
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\""
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,14 @@
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ffmpeg-probe": "^1.0.6",
+    "fluent-ffmpeg": "^2.1.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "jimp": "^0.16.1",
     "nodemon": "^2.0.7"
   }

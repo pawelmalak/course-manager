@@ -15,6 +15,9 @@ const PORT = process.env.PORT || 5001;
 // Enable body parser
 app.use(express.json());
 
+// Static dir
+app.use(express.static('./public'));
+
 // Set logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan(':method :url :status :response-time ms'));
@@ -24,6 +27,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/courses', require('./routes/courses'));
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/authors', require('./routes/authors'));
+app.use('/api/v1/lessons', require('./routes/lessons'));
+app.use('/api/v1/auth', require('./routes/auth'));
 
 // Set custom error handling middleware
 app.use(errorHandler);
