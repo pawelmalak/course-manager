@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const Headline = (props) => {
   return (
     <Fragment>
+      {props.link && (
+        <Link to={props.link} className='text-muted text-decoration-none'>Go back</Link>
+      )}
       <div className='d-flex justify-content-between'>
         <h2>{props.title}</h2>
         {props.count && (
