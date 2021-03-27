@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-import Progress from '../UI/Progress';
-import cover from '../../assets/img/cover.png';
+import Progress from './Progress';
+import cover from '../../../assets/img/cover.png';
 
-const Card = (props) => {
+const CourseCard = (props) => {
   const sizeClasses = [
     'col-12',
     'col-sm-6',
@@ -49,4 +49,4 @@ const Card = (props) => {
   )
 };
 
-export default Card;
+export default CourseCard;

@@ -18,7 +18,10 @@ const CourseSchema = new mongoose.Schema({
     ref: 'Author',
     required: [true, 'Author is required']
   },
-  lessons: [String],
+  lessons: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Lesson'
+  }],
   resources: [String],
   tags: [String],
   cover: String,

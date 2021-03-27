@@ -3,9 +3,11 @@ const router = express.Router();
 
 // Include other resource routers
 const userRouter = require('./users');
+const lessonRouter = require('./lessons');
 
 // Re-route into other resource routers
 router.use('/:courseId/favorite', userRouter);
+router.use('/:courseId/lessons', lessonRouter);
 
 const {
   getCourse,
@@ -13,7 +15,8 @@ const {
   createCourse,
   updateCourse,
   deleteCourse
-} = require('../controlers/courses');
+} = require('../controllers/courses');
+const { route } = require('./users');
 
 router
   .route('/')

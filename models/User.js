@@ -22,9 +22,18 @@ const UserSchema = new mongoose.Schema({
     minLength: [6, 'Password must be at least 6 characters long'],
     select: false
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
   favorites: [{
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Course'
+  }],
+  watched: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Lesson'
   }],
   createdAt: {
     type: Date,

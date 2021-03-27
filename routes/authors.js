@@ -8,7 +8,7 @@ const {
   createAuthor,
   updateAuthor,
   deleteAuthor
-} = require('../controlers/authors');
+} = require('../controllers/authors');
 
 router
   .route('/')

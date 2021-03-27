@@ -3,14 +3,16 @@ const router = express.Router({ mergeParams: true });
 
 const {
   getUser,
+  getUsers,
   createUser,
   updateUser,
   deleteUser,
   favoriteCourse
-} = require('../controlers/users');
+} = require('../controllers/users');
 
 router
   .route('/')
+  .get(getUsers)
   .put(favoriteCourse)
   .post(createUser);
 
