@@ -15,7 +15,7 @@ const AuthorCard = ({ author }) => {
             style={{ height: '50px', borderRadius: '50%' }}
           />
           <div>
-            <h5 class="card-title">{author.name}</h5>
+            <h5 className="card-title">{author.name}</h5>
             <h6 className="card-subtitle mb-2 text-muted">{author.courses.length} courses</h6>
             <Link to={`/authors/${author._id}`}>View Author</Link>
           </div>

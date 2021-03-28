@@ -16,7 +16,7 @@ const Headline = (props) => {
           </button>
         )}
       </div>
-      {props.subtitle && (<h6 className='text-muted'>{props.subtitle}</h6>)}
+      {props.subtitle && (<h6 className='text-muted mb-3'>{props.subtitle}</h6>)}
     </Fragment>
   )
 }

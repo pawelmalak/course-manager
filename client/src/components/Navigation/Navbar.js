@@ -10,9 +10,6 @@ const NavBar = () => {
           <span className='navbar-toggler-icon'></span>
         </button>
         <Navlinks />
-        <form className='d-flex'>
-          <input className='form-control me-2' type='search' placeholder='Search' />
-        </form>
       </div>
     </nav>
   );
