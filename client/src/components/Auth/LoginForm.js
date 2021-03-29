@@ -1,5 +1,7 @@
-import React, { Fragment, useState } from 'react';
-import axios from 'axios';
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from '../../store/actions/auth';
 
 import Headline from '../UI/Headline';
 import Alert from '../UI/Alert';
@@ -14,9 +16,7 @@ const LoginForm = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    axios.post('/api/v1/auth/login', formData)
-      .then(res => console.log(res))
-      .catch(err => setErrors([err.response.data.error]));
+    props.loginUser(formData);
   }
 
   const inputChangeHandler = (e) => {
@@ -69,4 +69,10 @@ const LoginForm = (props) => {
   )
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: (formData) => dispatch(actions.loginUser(formData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm);

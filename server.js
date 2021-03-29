@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 5001;
 
 // Enable body parser
 app.use(express.json());
+
+app.use(cors());
 
 // Static dir
 app.use(express.static('./public'));
