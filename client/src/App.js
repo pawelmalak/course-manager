@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -16,7 +17,20 @@ import Auth from './components/Auth/Auth';
 import Dashboard from './components/Dashboard/Dashboard';
 import Table from './components/UI/Table/Table';
 
+// Global auth
+import { getUser } from './store/actions/auth';
+
+// Check if token exists. Set is as axios header if it does
+if (localStorage.getItem('token')) {
+  const token = localStorage.getItem('token');
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 const App = () => {
+  useEffect(() => {
+    store.dispatch(getUser());
+  }, [])
+
   return (
     <React.StrictMode>
       <Provider store={store}>

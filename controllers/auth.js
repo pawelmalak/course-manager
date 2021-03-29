@@ -4,6 +4,23 @@ const asyncWrapper = require('../middleware/asyncWrapper');
 const ErrorResponse = require('../utils/ErrorResponse');
 const User = require('../models/User');
 
+// @desc      Get user by his token
+// @method    GET
+// @route     /api/v1/auth
+// @access    Private
+exports.getUser = asyncWrapper(async (req, res, next) => {
+  const user = await User.findById(req.user).select('-password');
+
+  if (!user) {
+    return next(new ErrorResponse(404, `User with id of ${req.user} was not found`));
+  }
+
+  res.status(200).json({
+    success: true,
+    data: user
+  })
+})
+
 // @desc      Register user
 // @method    POST
 // @route     /api/v1/auth/register

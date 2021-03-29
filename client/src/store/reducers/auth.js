@@ -31,10 +31,20 @@ const authError = (state, action) => {
   }
 }
 
+const getUser = (state, action) => {
+  return {
+    ...state,
+    loading: false,
+    isAuthenticated: true,
+    user: action.user
+  }
+}
+
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.AUTH_SUCCESS: return authSuccess(state, action);
     case actions.AUTH_ERROR: return authError(state, action);
+    case actions.GET_USER: return getUser(state, action);
     default: return state;
   }
 }
