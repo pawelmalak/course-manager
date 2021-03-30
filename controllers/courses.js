@@ -7,7 +7,10 @@ const Course = require('../models/Course');
 // @route     /api/v1/courses/:id
 // @access    Public
 exports.getCourse = asyncWrapper(async (req, res, next) => {
-  const course = await Course.findById(req.params.id);
+  const course = await Course.findById(req.params.id).populate({
+    path: 'author',
+    select: ['name']
+  });
 
   if (!course) {
     return next(new ErrorResponse(404, `Course with id of ${req.params.id} was not found`));
@@ -24,7 +27,10 @@ exports.getCourse = asyncWrapper(async (req, res, next) => {
 // @route     /api/v1/courses
 // @access    Public
 exports.getCourses = asyncWrapper(async (req, res, next) => {
-  const courses = await Course.find();
+  const courses = await Course.find().populate({
+    path: 'author',
+    select: ['name']
+  });
 
   res.status(200).json({
     success: true,
@@ -37,7 +43,12 @@ exports.getCourses = asyncWrapper(async (req, res, next) => {
 // @route     /api/v1/courses
 // @access    Private
 exports.createCourse = asyncWrapper(async (req, res, next) => {
+  req.body = {
+    ...req.body,
+    cover: req.files.cover[0].filename
+  }
   const course = await Course.create(req.body);
+
 
   res.status(201).json({
     success: true,

@@ -1,4 +1,8 @@
+const fs = require('fs');
+const path = require('path');
 const mongoose = require('mongoose');
+const slugify = require('slugify');
+const createCourseDir = require('../utils/createCourseDir');
 const Author = require('./Author');
 
 const CourseSchema = new mongoose.Schema({
@@ -25,6 +29,7 @@ const CourseSchema = new mongoose.Schema({
   resources: [String],
   tags: [String],
   cover: String,
+  slug: String,
   createdAt: {
     type: Date,
     default: Date.now()
@@ -36,6 +41,11 @@ const CourseSchema = new mongoose.Schema({
 });
 
 CourseSchema.pre('save', function(next) {
+  this.slug = slugify(this.name, {
+    replacement: '_',
+    lower: true
+  });
+  // createCourseDir(this.slug);
   this.constructor.updateAuthor(this.author, this._id);
   next();
 })
