@@ -17,7 +17,7 @@ const Authors = (props) => {
   return (
     <Container>
       <Headline title='Authors' count={props.authors.length} />
-      {props.authors.map(a => <AuthorCard author={a} />)}
+      {props.authors.map(a => <AuthorCard author={a} key={a._id} />)}
     </Container>
   )
 }

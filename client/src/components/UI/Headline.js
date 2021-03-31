@@ -11,7 +11,7 @@ const Headline = (props) => {
         <h2>{props.title}</h2>
         {props.count !== undefined && (
           <button type='button' className='btn btn-outline-dark'>
-            Total&nbsp;&nbsp;
+            {props.badgeText ? props.badgeText : 'Total'}&nbsp;&nbsp;
             <span className='badge bg-dark' id='badge-count'>{props.count}</span>
           </button>
         )}

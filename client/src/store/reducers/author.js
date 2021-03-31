@@ -2,15 +2,15 @@ import * as actions from '../actions/actionTypes';
 
 const initialState = {
   authors: [],
-  author: {},
-  loading: false
+  author: null,
+  loading: true
 };
 
 const getAuthors = (state, action) => {
   return {
     ...state,
     authors: action.authors,
-    author: {},
+    author: null,
     loading: false
   }
 }

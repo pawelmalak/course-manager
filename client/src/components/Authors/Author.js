@@ -17,7 +17,7 @@ const Author = (props) => {
 
   return (
     <Container>
-      {props.loading
+      {props.loading || props.author === null
         ? (<Spinner />)
         : (
           <Fragment>
@@ -25,9 +25,9 @@ const Author = (props) => {
               title={props.author.name}
               subtitle={<a href={props.author.website} target='blank' className='text-decoration-none'>Go to author's website</a>}
               link='/authors'
-              count={props.author.courses ? props.author.courses.length : 0}
+              count={props.author.courses.length}
             />
-            {props.author.courses && props.author.courses.length > 0
+            {props.author.courses.length > 0
               ? (
                 props.author.courses.map(c => (
                   <CourseCard
