@@ -50,11 +50,27 @@ CourseSchema.pre('save', function(next) {
   next();
 })
 
+CourseSchema.pre('deleteOne', { document: true }, function(next) {
+  this.constructor.deleteCourseFromAuthor(this.author, this._id);
+  next();
+})
+
 // Add course id to author.courses array
 CourseSchema.statics.updateAuthor = async function(authorId, courseId) {
   try {
     const author = await Author.findById(authorId);
     author.courses = [ ...author.courses, courseId ];
+    await author.save();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Delete course id from author.courses on course deletion
+CourseSchema.statics.deleteCourseFromAuthor = async function(authorId, courseId) {
+  try {
+    const author = await Author.findById(authorId);
+    author.courses = author.courses.filter(c => c.toString() != courseId);
     await author.save();
   } catch (err) {
     console.log(err);

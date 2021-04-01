@@ -15,16 +15,6 @@ const LessonSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  resolution: {
-    width: {
-      type: Number,
-      required: true
-    },
-    height: {
-      type: Number,
-      required: true
-    }
-  },
   course: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Course',

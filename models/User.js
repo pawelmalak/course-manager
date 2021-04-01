@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const hashPassword = require('../utils/hashPassword');
 
-// todo
-// array with watched lessons
-
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    trim: true
+    trim: true,
+    default: ''
   },
   email: {
     type: String,
