@@ -11,6 +11,10 @@ const LessonSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  resolution: {
+    width: Number,
+    height: Number
+  },
   filePath: {
     type: String,
     required: true
@@ -40,6 +44,17 @@ LessonSchema.statics.updateCourse = async function(courseId, lessonId) {
   try {
     const course = await Course.findById(courseId);
     course.lessons = [ ...course.lessons, lessonId ];
+    await course.save();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// Delete lesson id from course.lessons on lesson deletion
+LessonSchema.statics.deleteLessonFromCourse = async function(courseId, lessonId) {
+  try {
+    const course = await Course.findById(courseId);
+    course.lessons = course.lessons.filter(l => l.toString() != lessonId);
     await course.save();
   } catch (err) {
     console.log(err);
