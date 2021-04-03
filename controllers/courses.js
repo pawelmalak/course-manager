@@ -7,9 +7,14 @@ const Course = require('../models/Course');
 // @route     /api/v1/courses/:id
 // @access    Public
 exports.getCourse = asyncWrapper(async (req, res, next) => {
-  const course = await Course.findById(req.params.id).populate({
+  const course = await Course.findById(req.params.id)
+  .populate({
     path: 'author',
     select: ['name']
+  })
+  .populate({
+    path: 'lessons',
+    select: ['name', 'duration', 'filePath']
   });
 
   if (!course) {
@@ -43,12 +48,7 @@ exports.getCourses = asyncWrapper(async (req, res, next) => {
 // @route     /api/v1/courses
 // @access    Private
 exports.createCourse = asyncWrapper(async (req, res, next) => {
-  req.body = {
-    ...req.body,
-    cover: req.files.cover[0].filename
-  }
   const course = await Course.create(req.body);
-
 
   res.status(201).json({
     success: true,

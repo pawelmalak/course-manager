@@ -4,21 +4,20 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
 const connectDb = require('./db');
-const multer = require('./middleware/multer');
 const errorHandler = require('./middleware/errorHandler');
 
 // Set environmental variables
 dotenv.config({ path: './config/config.env' });
 
 connectDb();
+
+// Create app
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Enable body parser
+// Configure app
 app.use(express.json());
-
 app.use(cors());
-app.use(multer);
 
 // Static dir
 app.use(express.static('./public'));
