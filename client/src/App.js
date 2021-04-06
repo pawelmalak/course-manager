@@ -16,6 +16,7 @@ import Author from './components/Authors/Author';
 import Auth from './components/Auth/Auth';
 import Dashboard from './components/Dashboard/Dashboard';
 import Table from './components/UI/Table/Table';
+import CreateCourseForm from './components/Courses/CoursesForms/CreateCourseForm';
 
 // Global auth
 import { getUser } from './store/actions/auth';
@@ -44,7 +45,10 @@ const App = () => {
             <Route exact path='/authors/:id' component={Author} />
             <Route exact path='/auth' component={Auth} />
             <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/dashboard/users' render={props => <Table {...props} />} />
+            <Route exact path='/create' component={CreateCourseForm} />
+            <Route exact path='/dashboard/users' component={Table} />
+            <Route exact path='/dashboard/authors' component={Table} />
+            <Route exact path='/dashboard/courses/create' component={CreateCourseForm} />
           </Switch>
         </BrowserRouter>
       </Provider>

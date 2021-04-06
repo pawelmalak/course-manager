@@ -32,6 +32,7 @@ app.use('/api/v1/courses', require('./routes/courses'));
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/authors', require('./routes/authors'));
 app.use('/api/v1/lessons', require('./routes/lessons'));
+app.use('/api/v1/dashboard', require('./routes/dashboard'));
 app.use('/api/v1/auth', require('./routes/auth'));
 
 // Set custom error handling middleware

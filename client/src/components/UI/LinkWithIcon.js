@@ -8,7 +8,12 @@ const LinkWithIcon = ({ link }) => {
       <span className='me-2'>
         <FontAwesomeIcon icon={link.icon} />
       </span>
-      <Link to={link.dest}>{link.text}</Link>
+      <Link to={{
+        pathname: link.dest,
+        state: {
+          type: link.propsType
+        }
+      }}>{link.text}</Link>
     </p>
   )
 }

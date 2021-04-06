@@ -4,7 +4,7 @@ import LinkWithIcon from '../../UI/LinkWithIcon';
 
 const DashboardCard = ({ card }) => {
   return (
-    <div className='col-12 my-2'>
+    <div className='col-12 mb-3'>
       <div className='card'>
         <div className='card-body'>
           <div className='d-flex align-items-center justify-content-between'>
@@ -12,10 +12,10 @@ const DashboardCard = ({ card }) => {
               {card.title}
             </h5>
             <button type='button' className='btn btn-outline-dark'>
-              Total <span className='badge bg-dark'>4</span>
+              Total <span className='badge bg-dark'>{card.count}</span>
             </button>
           </div>
-          {card.links.map(l => <LinkWithIcon link={l} />)}
+          {card.links.map((l, i) => <LinkWithIcon link={l} key={i} />)}
         </div>
       </div>
     </div>
