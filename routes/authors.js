@@ -13,12 +13,12 @@ const {
 router
   .route('/')
   .get(getAuthors)
-  .post(protected, createAuthor);
+  .post(createAuthor);
 
 router
   .route('/:id')
   .get(getAuthor)
-  .put(protected, updateAuthor)
-  .delete(protected, deleteAuthor);
+  .put(updateAuthor)
+  .delete(deleteAuthor);
 
 module.exports = router;

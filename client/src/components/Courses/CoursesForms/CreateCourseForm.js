@@ -12,7 +12,7 @@ import Alert from '../../UI/Alert';
 const CreateCourseForm = (props) => {
   const initialState = {
     name: '',
-    author: null,
+    author: '',
     url: '',
     tags: ''
   };
@@ -54,10 +54,10 @@ const CreateCourseForm = (props) => {
   return (
     <Container>
       {/* Alerts */}
-      {props.errors && props.errors.map(e => <Alert alertType='danger'>{e}</Alert>)}
+      {props.errors && props.errors.map((e, i) => <Alert alertType='danger' key={i}>{e}</Alert>)}
       {!props.loadingCourse && props.course &&
         <Alert alertType='success'>
-          Course created: <Link to={`/courses/${props.course._id}`}>{props.course.name}</Link>
+          Course created: <Link to={`/courses/${props.course._id}`} className='text-decoration-none'>{props.course.name}</Link>
         </Alert>
       }
 
@@ -65,7 +65,7 @@ const CreateCourseForm = (props) => {
       <form onSubmit={e => formSubmitHandler(e)} className='mt-3'>
         {/* Course Name Input */}
         <div className='mb-3'>
-          <label for='name' className='form-label'>Course name</label>
+          <label htmlFor='name' className='form-label'>Course name</label>
           <input
             type='text'
             className='form-control'
@@ -80,7 +80,7 @@ const CreateCourseForm = (props) => {
 
         {/* Course Author Select */}
         <div className='mb-3'>
-          <label for='author' className='form-label'>
+          <label htmlFor='author' className='form-label'>
             Course author
           </label>
           <select
@@ -92,19 +92,19 @@ const CreateCourseForm = (props) => {
             value={formData.author}
             onChange={e => inputChangeHandler(e)}
           >
-            <option selected value={null}>
+            <option>
               {props.loadingAuthors
                 ? 'Loading authors...'
                 : 'Select author'
               }
             </option>
-            {!props.loadingAuthors && props.authors.map(a => <option value={a._id}>{a.name}</option>)}
+            {!props.loadingAuthors && props.authors.map((a, i) => <option value={a._id} key={i}>{a.name}</option>)}
           </select>
         </div>
 
         {/* Course URL Input */}
         <div className='mb-3'>
-          <label for='url' className='form-label'>Course website</label>
+          <label htmlFor='url' className='form-label'>Course website</label>
           <input
             type='text'
             className='form-control'
@@ -118,7 +118,7 @@ const CreateCourseForm = (props) => {
 
         {/* Course Tags Input */}
         <div className='mb-3'>
-          <label for='tags' className='form-label'>Course tags</label>
+          <label htmlFor='tags' className='form-label'>Course tags</label>
           <input
             type='text'
             className='form-control'

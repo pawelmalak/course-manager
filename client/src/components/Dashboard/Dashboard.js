@@ -27,7 +27,7 @@ const Dashboard = (props) => {
     {
       title: 'Authors',
       links: [
-        { text: 'Add', dest: '/', icon: faUser },
+        { text: 'Add', dest: '/dashboard/authors/create', icon: faUser },
         { text: 'List', dest: '/dashboard/authors', icon: faList, propsType: 'authors' }
       ]
     },

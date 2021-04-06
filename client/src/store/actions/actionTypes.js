@@ -1,18 +1,23 @@
-export const GET_AUTHORS = 'GET_AUTHORS';
+// Authors
 export const GET_AUTHOR = 'GET_AUTHOR';
-export const AUTHORS_ERROR = 'AUTHORS_ERROR';
+export const GET_AUTHORS = 'GET_AUTHORS';
+export const CREATE_AUTHOR_INIT = 'CREATE_AUTHOR_INIT';
+export const CREATE_AUTHOR = 'CREATE_AUTHOR';
+export const AUTHOR_ERROR = 'AUTHORS_ERROR';
 
-export const GET_COURSES = 'GET_COURSES';
+// Courses
 export const GET_COURSE = 'GET_COURSE';
-export const COURSE_ERROR = 'COURSE_ERROR';
-
+export const GET_COURSES = 'GET_COURSES';
 export const CREATE_COURSE_INIT = 'CREATE_COURSE_INIT';
 export const CREATE_COURSE = 'CREATE_COURSE';
+export const COURSE_ERROR = 'COURSE_ERROR';
 
+// Auth
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_ERROR = 'AUTH_ERROR';
-export const GET_USER = 'GET_USER';
 
+// Users
+export const GET_USER = 'GET_USER';
 export const GET_USERS = 'GET_USERS';
 
 // Dashboard
