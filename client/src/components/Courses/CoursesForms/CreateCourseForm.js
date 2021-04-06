@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as courseActions from '../../../store/actions/course';
@@ -24,6 +25,13 @@ const CreateCourseForm = (props) => {
     fetchAuthors();
   }, [fetchAuthors]);
 
+  useEffect(() => {
+    if (!props.loadingCourse && props.course) {
+      // Clear form on success
+      setFormData({ ...initialState, author: formData.author });
+    }
+  }, [props.course, props.loadingCourse]);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
     // Convert tags from string to array, trim whitespace and remove empty values
@@ -34,9 +42,6 @@ const CreateCourseForm = (props) => {
 
     // Send POST request
     props.postCourse({ ...formData, tags: tagsArray });
-
-    // Reset form ?
-    // setFormData({ ...initialState, author: formData.author });
   }
 
   const inputChangeHandler = (e) => {
@@ -48,7 +53,14 @@ const CreateCourseForm = (props) => {
 
   return (
     <Container>
+      {/* Alerts */}
       {props.errors && props.errors.map(e => <Alert alertType='danger'>{e}</Alert>)}
+      {!props.loadingCourse && props.course &&
+        <Alert alertType='success'>
+          Course created: <Link to={`/courses/${props.course._id}`}>{props.course.name}</Link>
+        </Alert>
+      }
+
       <Headline title='Create new course' />
       <form onSubmit={e => formSubmitHandler(e)} className='mt-3'>
         {/* Course Name Input */}
@@ -76,17 +88,17 @@ const CreateCourseForm = (props) => {
             id='author'
             name='author'
             required
-            disabled={props.loading}
+            disabled={props.loadingAuthors}
             value={formData.author}
             onChange={e => inputChangeHandler(e)}
           >
             <option selected value={null}>
-              {props.loading
+              {props.loadingAuthors
                 ? 'Loading authors...'
                 : 'Select author'
               }
             </option>
-            {!props.loading && props.authors.map(a => <option value={a._id}>{a.name}</option>)}
+            {!props.loadingAuthors && props.authors.map(a => <option value={a._id}>{a.name}</option>)}
           </select>
         </div>
 
@@ -128,14 +140,15 @@ const mapStateToProps = state => {
   return {
     errors: state.course.errors,
     authors: state.author.authors,
-    loading: state.author.loading,
-    course: state.course.course
+    loadingAuthors: state.author.loading,
+    course: state.course.course,
+    loadingCourse: state.course.loading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postCourse: (formData) => dispatch(courseActions.createCourse(formData)),
+    postCourse: (formData) => dispatch(courseActions.createCourseInit(formData)),
     fetchAuthors: () => dispatch(authorActions.getAuthors())
   }
 }

@@ -33,6 +33,11 @@ export const getCourse = (id) => async dispatch => {
   }
 }
 
+export const createCourseInit = (formData) => async dispatch => {
+  dispatch({ type: actions.CREATE_COURSE_INIT });
+  dispatch(createCourse(formData));
+}
+
 export const createCourse = (formData) => async dispatch => {
   try {
     const res = await axios.post('/api/v1/courses', formData);

@@ -26,6 +26,15 @@ const getCourse = (state, action) => {
   }
 }
 
+const createCourseInit = (state, action) => {
+  return {
+    ...state,
+    course: null,
+    loading: true,
+    errors: []
+  }
+}
+
 const createCourse = (state, action) => {
   return {
     ...state,
@@ -48,6 +57,7 @@ const courseReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_COURSES: return getCourses(state, action);
     case actions.GET_COURSE: return getCourse(state, action);
+    case actions.CREATE_COURSE_INIT: return createCourseInit(state, action);
     case actions.CREATE_COURSE: return createCourse(state, action);
     case actions.COURSE_ERROR: return courseError(state, action);
     default: return state;
