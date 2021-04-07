@@ -1,0 +1,92 @@
+{
+  "headers": {
+    "users": [
+      {
+        "display": "Email",
+        "name": "email",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Name",
+        "name": "name",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Role",
+        "name": "role",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Created",
+        "name": "createdAt",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Updated",
+        "name": "updatedAt",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Actions",
+        "name": "actions",
+        "isSortable": false,
+        "isActive": false,
+        "isAsc": false
+      }
+    ],
+    "authors": [
+      {
+        "display": "Name",
+        "name": "name",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Created",
+        "name": "createdAt",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Updated",
+        "name": "updatedAt",
+        "isSortable": true,
+        "isActive": false,
+        "isAsc": false
+      },
+      {
+        "display": "Actions",
+        "name": "actions",
+        "isSortable": false,
+        "isActive": false,
+        "isAsc": false
+      }
+    ]
+  },
+  "fields": {
+    "users": [
+      { "name": "email", "isDate": false, "default": "-" },
+      { "name": "name", "isDate": false, "default": "-" },
+      { "name": "role", "isDate": false, "default": "-" },
+      { "name": "createdAt", "isDate": true, "default": "1971-11-03" },
+      { "name": "updatedAt", "isDate": true, "default": "1971-11-03" }
+    ],
+    "authors": [
+      { "name": "name", "isDate": false, "default": "-" },
+      { "name": "createdAt", "isDate": true, "default": "1971-11-03" },
+      { "name": "updatedAt", "isDate": true, "default": "1971-11-03" }
+    ]
+  }
+}
