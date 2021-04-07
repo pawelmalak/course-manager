@@ -14,7 +14,7 @@ const Dashboard = (props) => {
     {
       title: 'Users',
       links: [
-        { text: 'Add', dest: '/', icon: faUser },
+        { text: 'Add', dest: '/dashboard/users/create', icon: faUser },
         { text: 'List', dest: '/dashboard/users', icon: faList, propsType: 'users' }
       ]
     },

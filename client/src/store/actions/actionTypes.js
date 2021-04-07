@@ -19,6 +19,9 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 // Users
 export const GET_USER = 'GET_USER';
 export const GET_USERS = 'GET_USERS';
+export const CREATE_USER_INIT = 'CREATE_USER_INIT';
+export const CREATE_USER = 'CREATE_USER';
+export const USER_ERROR = 'USER_ERROR';
 
 // Dashboard
 export const GET_COUNT = 'GET_COUNT';
