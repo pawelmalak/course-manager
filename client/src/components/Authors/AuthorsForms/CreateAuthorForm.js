@@ -11,7 +11,8 @@ import Alert from '../../UI/Alert';
 const CreateAuthorForm = (props) => {
   const initialState = {
     name: '',
-    website: ''
+    website: '',
+    avatar: null
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -20,14 +21,20 @@ const CreateAuthorForm = (props) => {
     if (!props.loading && props.author) {
       // Clear form on success
       setFormData(initialState);
+      document.querySelector('#avatar').value = null;
     }
   }, [props.author, props.loading]);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
+    const data = new FormData();
+    for (const field in formData) {
+      data.append(field, formData[field]);
+    }
+
     // Send POST request
-    props.postAuthor(formData);
+    props.postAuthor(data);
   }
 
   const inputChangeHandler = (e) => {
@@ -35,6 +42,13 @@ const CreateAuthorForm = (props) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  }
+
+  const fileInputHandler = (e) => {
+    setFormData({
+      ...formData,
+      avatar: e.target.files[0]
+    })
   }
 
   return (
@@ -47,8 +61,12 @@ const CreateAuthorForm = (props) => {
         </Alert>
       }
 
-      <Headline title='Create new author' />
-      <form onSubmit={e => formSubmitHandler(e)} className='mt-3'>
+      <Headline title='Create new author' link='/dashboard' />
+      <form
+        onSubmit={e => formSubmitHandler(e)}
+        encType='multipart/form-data'
+        className='mt-3'
+      >
         {/* Author Name Input */}
         <div className='mb-3'>
           <label htmlFor='name' className='form-label'>Author name</label>
@@ -66,7 +84,7 @@ const CreateAuthorForm = (props) => {
 
         {/* Author Website Input */}
         <div className='mb-3'>
-          <label htmlFor='url' className='form-label'>Author website</label>
+          <label htmlFor='website' className='form-label'>Author website</label>
           <input
             type='text'
             className='form-control'
@@ -75,6 +93,20 @@ const CreateAuthorForm = (props) => {
             name='website'
             value={formData.website}
             onChange={e => inputChangeHandler(e)}
+          />
+        </div>
+
+        {/* Author Avatar Input */}
+        <div className='mb-3'>
+          <label htmlFor='avatar' className='form-label'>Author avatar</label>
+          <input
+            type='file'
+            className='form-control'
+            id='avatar'
+            name='avatar'
+            accept='.png,.jpg,.jpeg'
+            // value={formData.avatar ? formData.avatar.name : ''}
+            onChange={e => fileInputHandler(e)}
           />
         </div>
         

@@ -40,8 +40,15 @@ exports.getAuthor = asyncWrapper(async (req, res, next) => {
 // @route     /api/v1/authors
 // @access    Private
 exports.createAuthor = asyncWrapper(async (req, res, next) => {
+  if (req.file) {
+    req.body = {
+      ...req.body,
+      avatar: req.file.filename
+    }
+  }
+
   const author = await Author.create(req.body);
-  
+
   res.status(201).json({
     success: true,
     data: author

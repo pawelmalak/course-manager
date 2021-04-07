@@ -49,7 +49,7 @@ const authorError = (state, action) => {
     ...state,
     loading: false,
     author: null,
-    errors: action.errros
+    errors: action.errors
   }
 }
 
